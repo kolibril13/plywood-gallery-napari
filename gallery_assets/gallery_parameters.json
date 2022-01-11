@@ -254,5 +254,37 @@
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "layer1.interpolation = \"nearest\"\nlayer1.attenuation=0\nviewer.camera.angles= (90,90,0)\nlayer1.gamma = 2\nviewer.camera.zoom= 20\nmake_screenshot(viewer)"
     }
+  ],
+  "Layer Options": [
+    {
+      "image_path": "gallery_assets/Layer_Options_001_Header2.png",
+      "celltype": "Header",
+      "css": "border: 3px solid #ED6A5A;width:140px",
+      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800,300)\nget_settings().application.window_size = (1000,100)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\n\nfrom napari.settings import get_settings\nget_settings()"
+    },
+    {
+      "image_path": "gallery_assets/Layer_Options_002_FirstView.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Layer_Options_003_Random1.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.5)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Layer_Options_004_Random2.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.9)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Layer_Options_005_Random2.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "my_red= {i: \"purple\" for i in range(1,10)} # currently slow!!\nmy_layer = viewer.add_labels(blobs, name=&#39;blobs&#39;,color=my_red)\nmy_layer.opacity =1\nmake_screenshot(viewer)"
+    }
   ]
 }
