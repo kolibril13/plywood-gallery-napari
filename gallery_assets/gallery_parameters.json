@@ -4,7 +4,7 @@
       "image_path": "gallery_assets/Camera_Options_001_Template.png",
       "celltype": "Header",
       "css": "border: 3px solid #ED6A5A;width:140px",
-      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (1000,300)\nget_settings().application.window_size = (200,200)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  True\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\n\nfrom napari.settings import get_settings\nget_settings()"
+      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (1000,300)\nget_settings().application.window_size = (200,200)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\n\nfrom napari.settings import get_settings\nget_settings()"
     },
     {
       "image_path": "gallery_assets/Camera_Options_002_FirstView.png",
@@ -125,6 +125,62 @@
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
       "code": "viewer.reset_view()\nviewer.scale_bar.visible = False\nviewer.text_overlay.visible = False\nviewer.layers.clear()\nmake_screenshot(viewer)"
+    }
+  ],
+  "Image Options": [
+    {
+      "image_path": "gallery_assets/Image_Options_001_Header2.png",
+      "celltype": "Header",
+      "css": "border: 3px solid #ED6A5A;width:140px",
+      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800,300)\nget_settings().application.window_size = (1000,100)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\n\nfrom napari.settings import get_settings\nget_settings()"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_002_FirstView.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_image(blobs, colormap=&#39;gray_r&#39;)\nlayer1.rendering = \"average\"\nlayer1.gamma = 0.9\nviewer.camera.angles = (13, 10, 77)\nlayer1.opacity = 1\nmake_screenshot(viewer)\n# average\n# gray_r"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_003_Colormapinferno.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.theme = \"dark\"\nlayer1.colormap = \"gray\"\nlayer1.gamma = 0.2\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_004_ColorGreen.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.colormap = \"green\"\nlayer1.gamma = 0.2\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_005_Colormapinferno.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.colormap = \"inferno\"\nlayer1.gamma = 0.2 \nmake_screenshot(viewer) "
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_006_Colormapturbocontrast.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.colormap = \"turbo\"\nlayer1.gamma = 0.5\nlayer1.contrast_limits = [0.0, 0.65]\nmake_screenshot(viewer) "
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_007_BackToBlackGamma1.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_image(blobs[50:,:,100:], colormap=&#39;gray_r&#39;)\nlayer1.rendering = \"average\"\nlayer1.gamma = 1\nviewer.camera.angles = (-10, 12, 88)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_008_BackToBlackGamma0_5.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.rendering = \"average\"\nlayer1.gamma = 0.5\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_009_BackToBlackGamma0_2.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.rendering = \"average\"\nlayer1.gamma = 0.2\nmake_screenshot(viewer)"
     }
   ]
 }
