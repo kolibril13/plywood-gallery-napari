@@ -285,6 +285,18 @@
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "my_red= {i: \"purple\" for i in range(1,10)} # currently slow!!\nmy_layer = viewer.add_labels(blobs, name=&#39;blobs&#39;,color=my_red)\nmy_layer.opacity =1\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Layer_Options_006_Labeled.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.layers.clear()\nlabeled = ndi.label(blobs)[0]\nlayer1 = viewer.add_labels(labeled, name=&#39;layer2&#39;,seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Layer_Options_007_FindBiggest.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "# label data\nmylabel, feature_num=scipy.ndimage.label(blobs)\nlabel_index,counts = np.unique(mylabel, return_counts= True)\n#sort labels\nlabeled_dots = {}\nfor A, B in zip(label_index,counts):\n    labeled_dots[A] = B\nsorted_dict = dict(sorted(labeled_dots.items(), key=lambda item: item[1], reverse=True))\nhighest_count=list(sorted_dict.keys())[1] #get highest label\n\nviewer.layers.clear()\nlabeled, nums = ndi.label(blobs)\nmy_red= {i: \"red\" for i in range(1,nums+1)}\n\nlayer1 = viewer.add_labels(labeled, name=&#39;blobs&#39;,\ncolor=my_red)\n\nmy_blue= {i: \"blue\" for i in range(1,nums+1)}\nmask = (labeled == highest_count)\nlayer1 = viewer.add_labels(mask, name=&#39;special_blob&#39;,\ncolor=my_blue)\n\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
     }
   ]
 }
