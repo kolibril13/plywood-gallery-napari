@@ -316,31 +316,31 @@
       "image_path": "gallery_assets/Morpho_003_FirstView.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.font_size =40\nviewer.text_overlay.text = \"Original\"\nviewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Morpho_004_Dilation.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\n\nimg_morphed = scipy.ndimage.binary_dilation(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_dilation\"\nimg_morphed = scipy.ndimage.binary_dilation(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Morpho_005_Erosion.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nimg_morphed = scipy.ndimage.binary_erosion(blobs, morphball)\n\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_erosion\"\nimg_morphed = scipy.ndimage.binary_erosion(blobs, morphball)\n\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Morpho_006_Dilation.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\n\nmorphball = ball(8)\n\n\nimg_morphed = scipy.ndimage.binary_opening(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_opening\"\nmorphball = ball(8)\n\nimg_morphed = scipy.ndimage.binary_opening(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Morpho_007_Dilation.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\n\nimg_morphed = scipy.ndimage.binary_closing(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_closing\"\n\nimg_morphed = scipy.ndimage.binary_closing(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
     }
   ]
 }
