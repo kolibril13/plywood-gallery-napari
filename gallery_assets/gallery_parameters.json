@@ -168,7 +168,7 @@
       "image_path": "gallery_assets/Image_Options_007_BackToBlackGamma1.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_image(blobs[50:,:,100:], colormap=&#39;gray_r&#39;)\nlayer1.rendering = \"average\"\nlayer1.gamma = 1\nviewer.camera.angles = (-10, 12, 88)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Average\"\nviewer.text_overlay.font_size =40\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_image(blobs[50:,:,100:], colormap=&#39;gray_r&#39;)\nlayer1.rendering = \"average\"\nlayer1.gamma = 1\n#viewer.camera.angles = (-10, 12, 88)\nviewer.camera.angles= (165, -50, -153)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_008_BackToBlackGamma0_5.png",
@@ -181,6 +181,78 @@
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "layer1.rendering = \"average\"\nlayer1.gamma = 0.2\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_010_iso.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold=0\nlayer1.gamma = 2\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_011_iso2.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold=0.5\nlayer1.gamma = 2\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_012_iso2.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold= 0.8\nlayer1.gamma = 2\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_013_iso2.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold= 0.8\nlayer1.gamma = 1\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_014_trans.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.text_overlay.text = \"Translucent\" # see the surface\nlayer1.rendering = \"translucent\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_015_additive.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.text_overlay.text = \"Additive\"\nlayer1.rendering = \"additive\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_016_Minip.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.text_overlay.text = \"Minip\" # find holes\nviewer.camera.angles = (-70, -54, 80)\nlayer1.rendering = \"minip\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_017_attenuated_mip_0_5.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "viewer.text_overlay.text = \"mip\"\nlayer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0.5\nlayer1.gamma = 2\nlayer1.colormap =\"gray_r\"\nviewer.camera.angles= (165, -50, -153)\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_018_attenuated_mip_0_2.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0.2\nlayer1.gamma = 2\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_019_attenuated_mip_0.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0\nlayer1.gamma = 2\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_020_Linear.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.interpolation = \"linear\"\nlayer1.attenuation=0\nviewer.camera.angles= (90,90,0)\nlayer1.gamma = 2\nviewer.camera.zoom= 20\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Image_Options_021_Nearest.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:200px",
+      "code": "layer1.interpolation = \"nearest\"\nlayer1.attenuation=0\nviewer.camera.angles= (90,90,0)\nlayer1.gamma = 2\nviewer.camera.zoom= 20\nmake_screenshot(viewer)"
     }
   ]
 }
