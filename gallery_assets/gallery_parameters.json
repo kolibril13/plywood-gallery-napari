@@ -1,0 +1,10 @@
+{
+  "Napari Overview": [
+    {
+      "image_path": "gallery_assets/Napari_Overview_001_Template.png",
+      "celltype": "Header",
+      "css": "border: 3px solid #ED6A5A;width:140px",
+      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1"
+    }
+  ]
+}
