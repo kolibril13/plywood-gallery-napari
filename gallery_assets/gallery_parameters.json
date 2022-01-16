@@ -440,19 +440,19 @@
       "image_path": "gallery_assets/Viewer_Interface_004_Height.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "from napari.settings import get_settings\nget_settings().application.window_size = (1200, 565) # default(723, 565)\nviewer = napari.Viewer()\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\n\nmake_screenshot(viewer)"
+      "code": "# first option to do this, but not recommended as it changes the defaults:\n#from napari.settings import get_settings\n#get_settings().application.window_size = (1200, 565) # default(723, 565)\n#better option:\nviewer = napari.Viewer()\nviewer.window.resize(1200, 565) \nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\n\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\n\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Viewer_Interface_005_Height.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "from napari.settings import get_settings\nget_settings().application.window_size = (723, 1200) # default(723, 565)\nviewer = napari.Viewer()\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\n\nmake_screenshot(viewer)"
+      "code": "viewer.window.resize(723, 1200) \nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Viewer_Interface_006_Height.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "from napari.settings import get_settings\nget_settings().application.save_window_state =  False\nget_settings().application.window_position = (800,300)\n\nviewer = napari.Viewer()\nviewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Set \\nWindow \\nposition\"\nviewer.text_overlay.font_size =40\n\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\n\nmake_screenshot(viewer)"
+      "code": "from napari.settings import get_settings\nget_settings().application.save_window_state =  False\nget_settings().application.window_position = (800,300)\n\nviewer = napari.Viewer()\nviewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Window \\nposition\"\nviewer.text_overlay.font_size =30\n\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\nmake_screenshot(viewer)"
     }
   ]
 }
