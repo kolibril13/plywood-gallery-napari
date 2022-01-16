@@ -416,5 +416,43 @@
       "css": "border: 3px solid #A8DCF0;width:200px",
       "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_closing\"\n\nimg_morphed = scipy.ndimage.binary_closing(blobs, morphbox)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
     }
+  ],
+  "Viewer Interface": [
+    {
+      "image_path": "gallery_assets/Viewer_Interface_001_FirstView.png",
+      "celltype": "Header",
+      "css": "border: 3px solid #ED6A5A;height:200px; width:auto;",
+      "code": "import napari\nimport matplotlib.pyplot as plt\nfrom skimage import data\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=False, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\nviewer = napari.Viewer()\nviewer.theme = \"dark\"\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Viewer_Interface_002_NewTheme.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;height:200px; width:auto;",
+      "code": "viewer.theme = \"light\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Viewer_Interface_003_SecondView.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;height:200px; width:auto;",
+      "code": "#this is how to hide the sidepanel, but there might be a pulbic function for that in future:\n#viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Viewer_Interface_004_Height.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;height:200px; width:auto;",
+      "code": "from napari.settings import get_settings\nget_settings().application.window_size = (1200, 565) # default(723, 565)\nviewer = napari.Viewer()\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\n\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Viewer_Interface_005_Height.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;height:200px; width:auto;",
+      "code": "from napari.settings import get_settings\nget_settings().application.window_size = (723, 1200) # default(723, 565)\nviewer = napari.Viewer()\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\n\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Viewer_Interface_006_Height.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;height:200px; width:auto;",
+      "code": "from napari.settings import get_settings\nget_settings().application.save_window_state =  False\nget_settings().application.window_position = (800,300)\n\nviewer = napari.Viewer()\nviewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Set \\nWindow \\nposition\"\nviewer.text_overlay.font_size =40\n\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\n\nmake_screenshot(viewer)"
+    }
   ]
 }
