@@ -4,7 +4,7 @@
       "image_path": "gallery_assets/Camera_Options_001_Template.png",
       "celltype": "Header",
       "css": "border: 3px solid #ED6A5A;width:140px",
-      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (1000,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600) \n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\n\nfrom napari.settings import get_settings\nget_settings()"
+      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (1000,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600) \n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1"
     },
     {
       "image_path": "gallery_assets/Camera_Options_002_FirstView.png",
@@ -127,31 +127,55 @@
       "code": "viewer.dims.current_step = [90,0,0]\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Camera_Options_022_in2Dswapaxes2.png",
-      "celltype": "Normal",
-      "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.layers.clear()\nlayer1 = viewer.add_labels(blobs.swapaxes(0,2), name=\"layer1\", seed=0.03) #TODO: is there a better way ? \nlayer1.opacity = 1\nviewer.dims.current_step = [151,0,0]\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Camera_Options_023_in2Dswapaxes1.png",
-      "celltype": "Normal",
-      "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.layers.clear()\nlayer1 = viewer.add_labels(blobs.swapaxes(0,1), name=\"layer1\", seed=0.03) #TODO: is there a better way ? \nlayer1.opacity = 1\nviewer.dims.current_step = [90,0,0]\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Camera_Options_024_TextHelloNapari.png",
+      "image_path": "gallery_assets/Camera_Options_022_TextHelloNapari.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
       "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Hello Napari!\"\nviewer.text_overlay.font_size =40\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Camera_Options_025_ScaleBar.png",
+      "image_path": "gallery_assets/Camera_Options_023_ScaleBar.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
       "code": "viewer.scale_bar.visible = True\nviewer.text_overlay.text = \"ScaleBar\"\nviewer.scale_bar.unit = \"0.54um\"\nviewer.scale_bar.font_size=10\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Camera_Options_026_RESTART.png",
+      "image_path": "gallery_assets/Camera_Options_024_Axes_Order_012.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:140px",
+      "code": "viewer.dims.order = [0,1,2]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nviewer.dims.current_step = [10,20,30]\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Camera_Options_025_Axes_Order_021.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:140px",
+      "code": "viewer.dims.order = [0,2,1]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Camera_Options_026_Axes_Order_102.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:140px",
+      "code": "viewer.dims.order = [1,0,2]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Camera_Options_027_Axes_Order_120.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:140px",
+      "code": "viewer.dims.order = [1,2,0]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Camera_Options_028_Axes_Order_201.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:140px",
+      "code": "viewer.dims.order = [2,0,1]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Camera_Options_029_Axes_Order_210.png",
+      "celltype": "Normal",
+      "css": "border: 3px solid #007AB8;width:140px",
+      "code": "viewer.dims.order = [2,1,0]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+    },
+    {
+      "image_path": "gallery_assets/Camera_Options_030_RESTART.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
       "code": "viewer.reset_view()\nviewer.scale_bar.visible = False\nviewer.text_overlay.visible = False\nviewer.layers.clear()\nmake_screenshot(viewer)"
