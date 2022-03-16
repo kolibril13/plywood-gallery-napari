@@ -4,7 +4,7 @@
       "image_path": "gallery_assets/Camera_Options_001_Template.png",
       "celltype": "Header",
       "css": "border: 3px solid #ED6A5A;width:140px",
-      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (1000,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600) \n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1"
+      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (1000,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600) \n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\n\ndef make_screenshot(viewer=None,region=None):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    if region:\n        print(img.shape)\n        img = img[region[0]:region[1],region[2]:region[3]]\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1"
     },
     {
       "image_path": "gallery_assets/Camera_Options_002_FirstView.png",
@@ -87,32 +87,32 @@
     {
       "image_path": "gallery_assets/Camera_Options_015_Axes.png",
       "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:140px",
-      "code": "viewer.camera.zoom = 0.2\nviewer.axes.visible = True\nmake_screenshot(viewer)"
+      "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
+      "code": "viewer.camera.zoom = 0.2\nviewer.axes.visible = True\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_016_AxesNoTips.png",
       "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:140px",
-      "code": "viewer.axes.arrows= False\nmake_screenshot(viewer)"
+      "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
+      "code": "viewer.axes.arrows= False\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_017_AxesNoColor.png",
       "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:140px",
-      "code": "viewer.axes.colored = False\nmake_screenshot(viewer)"
+      "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
+      "code": "viewer.axes.colored = False\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_018_AxesDashed.png",
       "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:140px",
-      "code": "viewer.axes.dashed = True\nmake_screenshot(viewer)"
+      "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
+      "code": "viewer.axes.dashed = True\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_019_AxesNoLabels.png",
       "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:140px",
-      "code": "viewer.axes.labels = False\nmake_screenshot(viewer)"
+      "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
+      "code": "viewer.axes.labels = False\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_020_IN2D.png",
@@ -243,67 +243,49 @@
       "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold=0\nlayer1.gamma = 2\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Image_Options_011_iso2.png",
-      "celltype": "Normal",
-      "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold=0.5\nlayer1.gamma = 2\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Image_Options_012_iso2.png",
-      "celltype": "Normal",
-      "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold= 0.8\nlayer1.gamma = 2\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Image_Options_013_iso2.png",
-      "celltype": "Normal",
-      "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold= 0.8\nlayer1.gamma = 1\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Image_Options_014_trans.png",
+      "image_path": "gallery_assets/Image_Options_011_trans.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "viewer.text_overlay.text = \"Translucent\" # see the surface\nlayer1.rendering = \"translucent\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Image_Options_015_additive.png",
+      "image_path": "gallery_assets/Image_Options_012_additive.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "viewer.text_overlay.text = \"Additive\"\nlayer1.rendering = \"additive\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Image_Options_016_Minip.png",
+      "image_path": "gallery_assets/Image_Options_013_Minip.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "viewer.text_overlay.text = \"Minip\" # find holes\nviewer.camera.angles = (-70, -54, 80)\nlayer1.rendering = \"minip\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Image_Options_017_attenuated_mip_0_5.png",
+      "image_path": "gallery_assets/Image_Options_014_attenuated_mip_0_5.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "viewer.text_overlay.text = \"mip\"\nlayer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0.5\nlayer1.gamma = 2\nlayer1.colormap =\"gray_r\"\nviewer.camera.angles= (165, -50, -153)\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Image_Options_018_attenuated_mip_0_2.png",
+      "image_path": "gallery_assets/Image_Options_015_attenuated_mip_0_2.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "layer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0.2\nlayer1.gamma = 2\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Image_Options_019_attenuated_mip_0.png",
+      "image_path": "gallery_assets/Image_Options_016_attenuated_mip_0.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "layer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0\nlayer1.gamma = 2\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Image_Options_020_Linear.png",
+      "image_path": "gallery_assets/Image_Options_017_Linear.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "layer1.interpolation = \"linear\"\nlayer1.attenuation=0\nviewer.camera.angles= (90,90,0)\nlayer1.gamma = 2\nviewer.camera.zoom= 20\nmake_screenshot(viewer)"
     },
     {
-      "image_path": "gallery_assets/Image_Options_021_Nearest.png",
+      "image_path": "gallery_assets/Image_Options_018_Nearest.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
       "code": "layer1.interpolation = \"nearest\"\nlayer1.attenuation=0\nviewer.camera.angles= (90,90,0)\nlayer1.gamma = 2\nviewer.camera.zoom= 20\nmake_screenshot(viewer)"
@@ -397,50 +379,6 @@
       "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_closing\"\n\nimg_morphed = scipy.ndimage.binary_closing(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
     }
   ],
-  "Morpho2": [
-    {
-      "image_path": "gallery_assets/Morpho2_001_Header2.png",
-      "celltype": "Header",
-      "css": "border: 3px solid #ED6A5A;width:140px",
-      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600) \n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport scipy\nfrom skimage.morphology import ball, cube, octahedron\n\ndef plot_voxels(varray, ax= None, title= None, linewidth=0.8):\n    cmap = plt.get_cmap(\"YlGnBu\")\n\n    if ax == None:\n        fig = plt.figure(figsize=(16/2, 9/2))\n        ax = fig.add_subplot(1, 1,1, projection=\"3d\")\n    ax.view_init(20, 200)\n    colors = cmap(varray)\n    ax.voxels(varray, facecolors=colors, edgecolor=\"black\", linewidth=linewidth)\n\n    ax.axis(&#39;off&#39;)\n    if title != None:\n        ax.set_title(title, fontsize=30)\n\n\n\n\n\n\nfrom napari.settings import get_settings\nget_settings()"
-    },
-    {
-      "image_path": "gallery_assets/Morpho2_002_kernel1.png",
-      "celltype": "Normal",
-      "css": "border: 3px solid #007AB8;width:120px; height: auto",
-      "code": "morphbox = cube(4)\nplot_voxels(morphbox)"
-    },
-    {
-      "image_path": "gallery_assets/Morpho2_003_FirstView.png",
-      "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.font_size =40\nviewer.text_overlay.text = \"Original\"\nviewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Morpho2_004_Dilation.png",
-      "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_dilation\"\nimg_morphed = scipy.ndimage.binary_dilation(blobs, morphbox)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Morpho2_005_Erosion.png",
-      "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_erosion\"\nimg_morphed = scipy.ndimage.binary_erosion(blobs, morphbox)\n\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Morpho2_006_Dilation.png",
-      "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_opening\"\nmorphball = cube(8)\n\nimg_morphed = scipy.ndimage.binary_opening(blobs, morphbox)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
-    },
-    {
-      "image_path": "gallery_assets/Morpho2_007_Dilation.png",
-      "celltype": "Dependend",
-      "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_closing\"\n\nimg_morphed = scipy.ndimage.binary_closing(blobs, morphbox)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
-    }
-  ],
   "Viewer Interface": [
     {
       "image_path": "gallery_assets/Viewer_Interface_001_FirstView.png",
@@ -458,7 +396,7 @@
       "image_path": "gallery_assets/Viewer_Interface_003_SecondView.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "#this is how to hide the sidepanel, but there might be a pulbic function for that in future:\n#viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nmake_screenshot(viewer)"
+      "code": "#this is how to hide the LayerControls, but there might be a pulbic function for that in future:\n#viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Viewer_Interface_004_SecondView.png",
