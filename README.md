@@ -1,3 +1,3 @@
-# https://kolibril13.github.io/plywood-gallery-napari-test/
+# https://kolibril13.github.io/napari-plywood-gallery/
 
-Testing napari with plywood_gallery
+A cheat sheet like overview of napari code snippets with the pilosophy: “Image First, Code Second”.
