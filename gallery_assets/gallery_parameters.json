@@ -4,7 +4,7 @@
       "image_path": "gallery_assets/Camera_Options_001_Template.png",
       "celltype": "Header",
       "css": "border: 3px solid #ED6A5A;width:140px",
-      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (1000,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600) \n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\n\ndef make_screenshot(viewer=None,region=None):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    if region:\n        print(img.shape)\n        img = img[region[0]:region[1],region[2]:region[3]]\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1"
+      "code": "import matplotlib.pyplot as plt\nimport napari\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (1000, 300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar = False\nget_settings().application.save_window_state = False\n\nviewer = napari.Viewer()\nviewer.theme = \"light\"\nviewer.dims.ndisplay = 3\nviewer.window.resize(800, 600)\nviewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nviewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\ndef make_screenshot(viewer=None, region=None):\n    img = viewer.screenshot(canvas_only=True, flash=False)\n    if region:\n        print(img.shape)\n        img = img[region[0] : region[1], region[2] : region[3]]\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs = blobs[200:, 200:, :-100]\nblobs[:, :, :50] = 1\n\nimport matplotlib.pyplot as plt  # NOT\n\nfix, ax = plt.subplots(figsize=(5, 4), facecolor=\"#F7F5F3\")  # NOT\ntext_kwargs = dict(ha=\"center\", va=\"center\", fontsize=70, color=\"#ED6A5A\")  # NOT\nax.text(0.5, 0.5, \"Header\", **text_kwargs)  # NOT\nax.axis(\"off\");  # NOT"
     },
     {
       "image_path": "gallery_assets/Camera_Options_002_FirstView.png",
@@ -88,91 +88,91 @@
       "image_path": "gallery_assets/Camera_Options_015_Axes.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
-      "code": "viewer.camera.zoom = 0.2\nviewer.axes.visible = True\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
+      "code": "viewer.camera.zoom = 0.2\nviewer.axes.visible = True\nmake_screenshot(viewer=viewer, region=[440, 700, 700, 900])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_016_AxesNoTips.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
-      "code": "viewer.axes.arrows= False\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
+      "code": "viewer.axes.arrows = False\nmake_screenshot(viewer=viewer, region=[440, 700, 700, 900])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_017_AxesNoColor.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
-      "code": "viewer.axes.colored = False\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
+      "code": "viewer.axes.colored = False\nmake_screenshot(viewer=viewer, region=[440, 700, 700, 900])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_018_AxesDashed.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
-      "code": "viewer.axes.dashed = True\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
+      "code": "viewer.axes.dashed = True\nmake_screenshot(viewer=viewer, region=[440, 700, 700, 900])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_019_AxesNoLabels.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;height:97px; width:auto",
-      "code": "viewer.axes.labels = False\nmake_screenshot(viewer= viewer, region=[220,350,350,450])"
+      "code": "viewer.axes.labels = False\nmake_screenshot(viewer=viewer, region=[440, 700, 700, 900])"
     },
     {
       "image_path": "gallery_assets/Camera_Options_020_IN2D.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.dims.ndisplay = 2\nlayer1.opacity = 1\nviewer.dims.current_step = [92,0,0]\nmake_screenshot(viewer)"
+      "code": "viewer.dims.ndisplay = 2\nlayer1.opacity = 1\nviewer.dims.current_step = [92, 0, 0]\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_021_IN2DStep.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.dims.current_step = [90,0,0]\nmake_screenshot(viewer)"
+      "code": "viewer.dims.current_step = [90, 0, 0]\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_022_TextHelloNapari.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Hello Napari!\"\nviewer.text_overlay.font_size =40\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Hello Napari!\"\nviewer.text_overlay.font_size = 40\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_023_ScaleBar.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.scale_bar.visible = True\nviewer.text_overlay.text = \"ScaleBar\"\nviewer.scale_bar.unit = \"0.54um\"\nviewer.scale_bar.font_size=10\nmake_screenshot(viewer)"
+      "code": "viewer.scale_bar.visible = True\nviewer.text_overlay.text = \"ScaleBar\"\nviewer.scale_bar.unit = \"0.54um\"\nviewer.scale_bar.font_size = 10\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_024_Axes_Order_012.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.dims.order = [0,1,2]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nviewer.dims.current_step = [10,20,30]\nmake_screenshot(viewer)"
+      "code": "viewer.dims.order = [0, 1, 2]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nviewer.dims.current_step = [10, 20, 30]\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_025_Axes_Order_021.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.dims.order = [0,2,1]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+      "code": "viewer.dims.order = [0, 2, 1]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_026_Axes_Order_102.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.dims.order = [1,0,2]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+      "code": "viewer.dims.order = [1, 0, 2]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_027_Axes_Order_120.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.dims.order = [1,2,0]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+      "code": "viewer.dims.order = [1, 2, 0]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_028_Axes_Order_201.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.dims.order = [2,0,1]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+      "code": "viewer.dims.order = [2, 0, 1]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_029_Axes_Order_210.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:140px",
-      "code": "viewer.dims.order = [2,1,0]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
+      "code": "viewer.dims.order = [2, 1, 0]\nviewer.text_overlay.text = f\"axes order = {viewer.dims.order}\"\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Camera_Options_030_RESTART.png",
@@ -186,13 +186,13 @@
       "image_path": "gallery_assets/Image_Options_001_Header2.png",
       "celltype": "Header",
       "css": "border: 3px solid #ED6A5A;width:140px",
-      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600)\n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1"
+      "code": "import matplotlib.pyplot as plt\nimport napari\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800, 300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar = False\nget_settings().application.save_window_state = False\n\n\nviewer = napari.Viewer()\nviewer.theme = \"light\"\nviewer.dims.ndisplay = 3\nviewer.window.resize(800, 600)\nviewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nviewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash=False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs = blobs[200:, 200:, :-100]\nblobs[:, :, :50] = 1\n\nimport matplotlib.pyplot as plt  # NOT\n\nfix, ax = plt.subplots(figsize=(5, 4), facecolor=\"#F7F5F3\")  # NOT\ntext_kwargs = dict(ha=\"center\", va=\"center\", fontsize=70, color=\"#ED6A5A\")  # NOT\nax.text(0.5, 0.5, \"Header\", **text_kwargs)  # NOT\nax.axis(\"off\");  # NOT"
     },
     {
       "image_path": "gallery_assets/Image_Options_002_FirstView.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_image(blobs, colormap=&#39;gray_r&#39;)\nlayer1.rendering = \"average\"\nlayer1.gamma = 0.9\nviewer.camera.angles = (13, 10, 77)\nlayer1.opacity = 1\nmake_screenshot(viewer)\n# average # gray_r"
+      "code": "viewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_image(blobs, colormap=\"gray_r\")\nlayer1.rendering = \"average\"\nlayer1.gamma = 0.9\nviewer.camera.angles = (13, 10, 77)\nlayer1.opacity = 1\nmake_screenshot(viewer)\n# average # gray_r"
     },
     {
       "image_path": "gallery_assets/Image_Options_003_Colormapinferno.png",
@@ -210,19 +210,19 @@
       "image_path": "gallery_assets/Image_Options_005_Colormapinferno.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "layer1.colormap = \"inferno\"\nlayer1.gamma = 0.2 \nmake_screenshot(viewer) "
+      "code": "layer1.colormap = \"inferno\"\nlayer1.gamma = 0.2\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_006_Colormapturbocontrast.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "layer1.colormap = \"turbo\"\nlayer1.gamma = 0.5\nlayer1.contrast_limits = [0.0, 0.65]\nmake_screenshot(viewer) "
+      "code": "layer1.colormap = \"turbo\"\nlayer1.gamma = 0.5\nlayer1.contrast_limits = [0.0, 0.65]\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_007_BackToBlackGamma1.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Average\"\nviewer.text_overlay.font_size =40\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_image(blobs[50:,:,100:], colormap=&#39;gray_r&#39;)\nlayer1.rendering = \"average\"\nlayer1.gamma = 1\n#viewer.camera.angles = (-10, 12, 88)\nviewer.camera.angles= (165, -50, -153)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Average\"\nviewer.text_overlay.font_size = 40\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_image(blobs[50:, :, 100:], colormap=\"gray_r\")\nlayer1.rendering = \"average\"\nlayer1.gamma = 1\n# viewer.camera.angles = (-10, 12, 88)\nviewer.camera.angles = (165, -50, -153)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_008_BackToBlackGamma0_5.png",
@@ -240,55 +240,55 @@
       "image_path": "gallery_assets/Image_Options_010_iso.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold=0\nlayer1.gamma = 2\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.text = \"Iso\"\nlayer1.rendering = \"iso\"\nlayer1.iso_threshold = 0\nlayer1.gamma = 2\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_011_trans.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.text = \"Translucent\" # see the surface\nlayer1.rendering = \"translucent\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.text = \"Translucent\"  # see the surface\nlayer1.rendering = \"translucent\"\nlayer1.colormap = \"gray\"\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_012_additive.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.text = \"Additive\"\nlayer1.rendering = \"additive\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.text = \"Additive\"\nlayer1.rendering = \"additive\"\nlayer1.colormap = \"gray\"\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_013_Minip.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.text = \"Minip\" # find holes\nviewer.camera.angles = (-70, -54, 80)\nlayer1.rendering = \"minip\"\nlayer1.colormap =\"gray\"\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.text = \"Minip\"  # find holes\nviewer.camera.angles = (-70, -54, 80)\nlayer1.rendering = \"minip\"\nlayer1.colormap = \"gray\"\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_014_attenuated_mip_0_5.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.text_overlay.text = \"mip\"\nlayer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0.5\nlayer1.gamma = 2\nlayer1.colormap =\"gray_r\"\nviewer.camera.angles= (165, -50, -153)\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.text = \"mip\"\nlayer1.rendering = \"attenuated_mip\"\nlayer1.attenuation = 0.5\nlayer1.gamma = 2\nlayer1.colormap = \"gray_r\"\nviewer.camera.angles = (165, -50, -153)\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_015_attenuated_mip_0_2.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "layer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0.2\nlayer1.gamma = 2\nmake_screenshot(viewer)"
+      "code": "layer1.rendering = \"attenuated_mip\"\nlayer1.attenuation = 0.2\nlayer1.gamma = 2\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_016_attenuated_mip_0.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "layer1.rendering = \"attenuated_mip\"\nlayer1.attenuation=0\nlayer1.gamma = 2\nmake_screenshot(viewer)"
+      "code": "layer1.rendering = \"attenuated_mip\"\nlayer1.attenuation = 0\nlayer1.gamma = 2\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_017_Linear.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "layer1.interpolation = \"linear\"\nlayer1.attenuation=0\nviewer.camera.angles= (90,90,0)\nlayer1.gamma = 2\nviewer.camera.zoom= 20\nmake_screenshot(viewer)"
+      "code": "layer1.interpolation = \"linear\"\nlayer1.attenuation = 0\nviewer.camera.angles = (90, 90, 0)\nlayer1.gamma = 2\nviewer.camera.zoom = 20\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Image_Options_018_Nearest.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "layer1.interpolation = \"nearest\"\nlayer1.attenuation=0\nviewer.camera.angles= (90,90,0)\nlayer1.gamma = 2\nviewer.camera.zoom= 20\nmake_screenshot(viewer)"
+      "code": "layer1.interpolation = \"nearest\"\nlayer1.attenuation = 0\nviewer.camera.angles = (90, 90, 0)\nlayer1.gamma = 2\nviewer.camera.zoom = 20\nmake_screenshot(viewer)"
     }
   ],
   "Layer Options": [
@@ -296,43 +296,43 @@
       "image_path": "gallery_assets/Layer_Options_001_Header2.png",
       "celltype": "Header",
       "css": "border: 3px solid #ED6A5A;width:140px",
-      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600)\n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\n\nfrom napari.settings import get_settings\nget_settings()"
+      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800, 300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar = False\nget_settings().application.save_window_state = False\n\n\nviewer = napari.Viewer()\nviewer.theme = \"light\"\nviewer.dims.ndisplay = 3\nviewer.window.resize(800, 600)\nviewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nviewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash=False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs = blobs[200:, 200:, :-100]\nblobs[:, :, :50] = 1\n\nimport matplotlib.pyplot as plt  # NOT\n\nfix, ax = plt.subplots(figsize=(5, 4), facecolor=\"#F7F5F3\")  # NOT\ntext_kwargs = dict(ha=\"center\", va=\"center\", fontsize=70, color=\"#ED6A5A\")  # NOT\nax.text(0.5, 0.5, \"Header\", **text_kwargs)  # NOT\nax.axis(\"off\")\n# NOT\n\nfrom napari.settings import get_settings\n\nget_settings()"
     },
     {
       "image_path": "gallery_assets/Layer_Options_002_FirstView.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Layer_Options_003_Random1.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "layer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.5)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "layer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.5)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Layer_Options_004_Random2.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "layer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.9)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "layer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.9)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Layer_Options_005_Random2.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "my_red= {i: \"purple\" for i in range(1,10)} # currently slow!!\nmy_layer = viewer.add_labels(blobs, name=&#39;blobs&#39;,color=my_red)\nmy_layer.opacity =1\nmake_screenshot(viewer)"
+      "code": "my_red = {i: \"purple\" for i in range(1, 10)}  # currently slow!!\nmy_layer = viewer.add_labels(blobs, name=\"blobs\", color=my_red)\nmy_layer.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Layer_Options_006_Labeled.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "viewer.layers.clear()\nlabeled = ndi.label(blobs)[0]\nlayer1 = viewer.add_labels(labeled, name=&#39;layer2&#39;,seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nlabeled = ndi.label(blobs)[0]\nlayer1 = viewer.add_labels(labeled, name=\"layer2\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Layer_Options_007_FindBiggest.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;width:200px",
-      "code": "# label data\nmylabel, feature_num=scipy.ndimage.label(blobs)\nlabel_index,counts = np.unique(mylabel, return_counts= True)\n#sort labels\nlabeled_dots = {}\nfor A, B in zip(label_index,counts):\n    labeled_dots[A] = B\nsorted_dict = dict(sorted(labeled_dots.items(), key=lambda item: item[1], reverse=True))\nhighest_count=list(sorted_dict.keys())[1] #get highest label\n\nviewer.layers.clear()\nlabeled, nums = ndi.label(blobs)\nmy_red= {i: \"red\" for i in range(1,nums+1)}\n\nlayer1 = viewer.add_labels(labeled, name=&#39;blobs&#39;,\ncolor=my_red)\n\nmy_blue= {i: \"blue\" for i in range(1,nums+1)}\nmask = (labeled == highest_count)\nlayer1 = viewer.add_labels(mask, name=&#39;special_blob&#39;,\ncolor=my_blue)\n\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "# label data\nmylabel, feature_num = scipy.ndimage.label(blobs)\nlabel_index, counts = np.unique(mylabel, return_counts=True)\n# sort labels\nlabeled_dots = {}\nfor A, B in zip(label_index, counts):\n    labeled_dots[A] = B\nsorted_dict = dict(sorted(labeled_dots.items(), key=lambda item: item[1], reverse=True))\nhighest_count = list(sorted_dict.keys())[1]  # get highest label\n\nviewer.layers.clear()\nlabeled, nums = ndi.label(blobs)\nmy_red = {i: \"red\" for i in range(1, nums + 1)}\n\nlayer1 = viewer.add_labels(labeled, name=\"blobs\", color=my_red)\n\nmy_blue = {i: \"blue\" for i in range(1, nums + 1)}\nmask = labeled == highest_count\nlayer1 = viewer.add_labels(mask, name=\"special_blob\", color=my_blue)\n\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     }
   ],
   "Morpho": [
@@ -340,7 +340,7 @@
       "image_path": "gallery_assets/Morpho_001_Header2.png",
       "celltype": "Header",
       "css": "border: 3px solid #ED6A5A;width:140px",
-      "code": "import matplotlib.pyplot as plt\nimport napari\nimport numpy as np\nimport scipy\nfrom scipy import ndimage as ndi\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800,300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar =  False\nget_settings().application.save_window_state =  False\n\ntry:\n    viewer\nexcept NameError:\n    viewer = napari.Viewer()\n    viewer.theme = \"light\"\n    viewer.dims.ndisplay = 3\n    viewer.window.resize(800, 600) \n    viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\n    viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport scipy\nfrom skimage.morphology import ball, cube, octahedron\n\ndef plot_voxels(varray, ax= None, title= None, linewidth=0.8):\n    cmap = plt.get_cmap(\"YlGnBu\")\n\n    if ax == None:\n        fig = plt.figure(figsize=(16/2, 9/2))\n        ax = fig.add_subplot(1, 1,1, projection=\"3d\")\n    ax.view_init(20, 200)\n    colors = cmap(varray)\n    ax.voxels(varray, facecolors=colors, edgecolor=\"black\", linewidth=linewidth)\n\n    ax.axis(&#39;off&#39;)\n    if title != None:\n        ax.set_title(title, fontsize=30)\n\n\n\n\n\n\nfrom napari.settings import get_settings\nget_settings()"
+      "code": "import matplotlib.pyplot as plt\nimport napari\nimport scipy\n\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800, 300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar = False\nget_settings().application.save_window_state = False\n\n\nviewer = napari.Viewer()\nviewer.theme = \"light\"\nviewer.dims.ndisplay = 3\nviewer.window.resize(800, 600)\nviewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nviewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash=False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs = blobs[200:, 200:, :-100]\nblobs[:, :, :50] = 1\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport scipy\nfrom skimage.morphology import ball\n\n\ndef plot_voxels(varray, ax=None, title=None, linewidth=0.8):\n    cmap = plt.get_cmap(\"YlGnBu\")\n\n    if ax == None:\n        fig = plt.figure(figsize=(16 / 2, 9 / 2))\n        ax = fig.add_subplot(1, 1, 1, projection=\"3d\")\n    ax.view_init(20, 200)\n    colors = cmap(varray)\n    ax.voxels(varray, facecolors=colors, edgecolor=\"black\", linewidth=linewidth)\n\n    ax.axis(\"off\")\n    if title != None:\n        ax.set_title(title, fontsize=30)\n\n\nimport matplotlib.pyplot as plt  # NOT\n\nfix, ax = plt.subplots(figsize=(5, 4), facecolor=\"#F7F5F3\")  # NOT\ntext_kwargs = dict(ha=\"center\", va=\"center\", fontsize=70, color=\"#ED6A5A\")  # NOT\nax.text(0.5, 0.5, \"Header\", **text_kwargs)  # NOT\nax.axis(\"off\")\n# NOT\n\nfrom napari.settings import get_settings\n\nget_settings()"
     },
     {
       "image_path": "gallery_assets/Morpho_002_kernel1.png",
@@ -352,31 +352,31 @@
       "image_path": "gallery_assets/Morpho_003_FirstView.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.font_size =40\nviewer.text_overlay.text = \"Original\"\nviewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.text_overlay.visible = True\nviewer.text_overlay.font_size = 40\nviewer.text_overlay.text = \"Original\"\nviewer.reset_view()\nviewer.layers.clear()\nviewer.dims.ndisplay = 3\nviewer.theme = \"light\"\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Morpho_004_Dilation.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_dilation\"\nimg_morphed = scipy.ndimage.binary_dilation(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_dilation\"\nimg_morphed = scipy.ndimage.binary_dilation(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Morpho_005_Erosion.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_erosion\"\nimg_morphed = scipy.ndimage.binary_erosion(blobs, morphball)\n\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_erosion\"\nimg_morphed = scipy.ndimage.binary_erosion(blobs, morphball)\n\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Morpho_006_Dilation.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_opening\"\nmorphball = ball(8)\n\nimg_morphed = scipy.ndimage.binary_opening(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_opening\"\nmorphball = ball(8)\n\nimg_morphed = scipy.ndimage.binary_opening(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Morpho_007_Dilation.png",
       "celltype": "Dependend",
       "css": "border: 3px solid #A8DCF0;width:200px",
-      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_closing\"\n\nimg_morphed = scipy.ndimage.binary_closing(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "viewer.layers.clear()\nviewer.text_overlay.text = \"binary_closing\"\n\nimg_morphed = scipy.ndimage.binary_closing(blobs, morphball)\nlayer1 = viewer.add_labels(img_morphed, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (3, 21, 74)\nviewer.camera.zoom = 2.8\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     }
   ],
   "Viewer Interface": [
@@ -384,7 +384,7 @@
       "image_path": "gallery_assets/Viewer_Interface_001_FirstView.png",
       "celltype": "Header",
       "css": "border: 3px solid #ED6A5A;height:200px; width:auto;",
-      "code": "import napari\nimport matplotlib.pyplot as plt\nfrom skimage import data\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=False, flash= False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs  = blobs[200:,200:, :-100]\nblobs[:,:,:50]=1\n\nviewer = napari.Viewer()\nviewer.theme = \"dark\"\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\nmake_screenshot(viewer)"
+      "code": "import napari\nimport matplotlib.pyplot as plt\nfrom skimage import data\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=False, flash=False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs = blobs[200:, 200:, :-100]\nblobs[:, :, :50] = 1\n\nviewer = napari.Viewer()\nviewer.theme = \"dark\"\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity = 1\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Viewer_Interface_002_NewTheme.png",
@@ -396,31 +396,31 @@
       "image_path": "gallery_assets/Viewer_Interface_003_SecondView.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "#this is how to hide the LayerControls, but there might be a pulbic function for that in future:\n#viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nmake_screenshot(viewer)"
+      "code": "# this is how to hide the LayerControls, but there might be a pulbic function for that in future:\n# viewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Viewer_Interface_004_SecondView.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "#this is how to hide the LayerList, but there might be a pulbic function for that in future:\n#viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\nmake_screenshot(viewer)"
+      "code": "# this is how to hide the LayerList, but there might be a pulbic function for that in future:\n# viewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Viewer_Interface_005_Height.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "# first option to do this, but not recommended as it changes the defaults:\n#from napari.settings import get_settings\n#get_settings().application.window_size = (1200, 565) # default(723, 565)\n#better option:\nviewer = napari.Viewer()\nviewer.window.resize(1200, 565) \nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\n\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\n\nmake_screenshot(viewer)"
+      "code": "# first option to do this, but not recommended as it changes the defaults:\n# from napari.settings import get_settings\n# get_settings().application.window_size = (1200, 565) # default(723, 565)\n# better option:\nviewer = napari.Viewer()\nviewer.window.resize(1200, 565)\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\n\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity = 1\n\n\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Viewer_Interface_006_Height.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "viewer.window.resize(723, 1200) \nmake_screenshot(viewer)"
+      "code": "viewer.window.resize(723, 1200)\nmake_screenshot(viewer)"
     },
     {
       "image_path": "gallery_assets/Viewer_Interface_007_Height.png",
       "celltype": "Normal",
       "css": "border: 3px solid #007AB8;height:200px; width:auto;",
-      "code": "from napari.settings import get_settings\nget_settings().application.save_window_state =  False\nget_settings().application.window_position = (800,300)\n\nviewer = napari.Viewer()\nviewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Window \\nposition\"\nviewer.text_overlay.font_size =30\n\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity =1\n\nmake_screenshot(viewer)"
+      "code": "from napari.settings import get_settings\n\nget_settings().application.save_window_state = False\nget_settings().application.window_position = (800, 300)\n\nviewer = napari.Viewer()\nviewer.text_overlay.visible = True\nviewer.text_overlay.text = \"Window \\nposition\"\nviewer.text_overlay.font_size = 30\n\nviewer.dims.ndisplay = 3\nlayer1 = viewer.add_labels(blobs, name=\"layer1\", seed=0.03)\nviewer.camera.angles = (30, 40, 80)\nlayer1.opacity = 1\n\nmake_screenshot(viewer)"
     }
   ]
 }
