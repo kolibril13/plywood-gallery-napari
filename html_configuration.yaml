@@ -7,4 +7,4 @@ description: |
   A "Dependent" cell depends on another "Dependent" cell left to it.
 favicon: icon.png
 custom_footer: ""
-gallary_parameters_path: gallery_assets/gallery_parameters.json
+gallery_parameters_path: gallery_assets/gallery_parameters.json
