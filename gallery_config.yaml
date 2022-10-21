@@ -4,5 +4,5 @@ user_content_version: 0.4.15 (Napari)
 description: |
   Cheat sheet gallery for napari
 favicon: icon.png
-preview_image: "https://kolibril13.github.io/plywood-gallery-napari/thumbnail.png"
+preview_image: "https://kolibril13.github.io/plywood-gallery-napari/preview_image.png"
 gallery_parameters_path: gallery_assets/gallery_parameters.json
