@@ -2,9 +2,8 @@ project_name: Napari Plywood Gallery
 repository_url: https://github.com/kolibril13/plywood-gallery-napari
 user_content_version: 0.4.15 (Napari)
 description: |
-  Normal cells are independent of each other, and can be run togehter with the "Header" cell. <br>
-  A "Dependent" cell depends on the "Normal" cell left to it. <br>
-  A "Dependent" cell depends on another "Dependent" cell left to it.
+  Cheat sheet gallery for napari
 favicon: icon.png
-custom_footer: ""
+preview_image: "thumbnail.png"
+# https://raw.githubusercontent.com/kolibril13/plywood-gallery-napari/main/thumbnail.png
 gallery_parameters_path: gallery_assets/gallery_parameters.json
