@@ -1,1 +1,3 @@
-A cheat sheet like overview of napari code snippets with the pilosophy: “Image First, Code Second”.
+# plywood-gallery-napari
+https://kolibril13.github.io/plywood-gallery-napari/  
+![](preview_image.png)  
