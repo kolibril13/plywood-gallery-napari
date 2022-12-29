@@ -1,6 +1,6 @@
 {
   "plywood_metadata": {
-    "plywood_gallery_core_version": "0.0.9"
+    "plywood_gallery_core_version": "0.0.12"
   },
   "plywood_content": {
     "Camera Options": [
@@ -190,6 +190,12 @@
       }
     ],
     "Image Options": [
+      {
+        "image_path": "gallery_assets/Image_Options_001_Header2.png",
+        "celltype": "Header",
+        "css": "border: 3px solid #ED6A5A;width:160px",
+        "code": "import matplotlib.pyplot as plt\nimport napari\nfrom skimage import data\n\nfrom napari.settings import get_settings\n\nget_settings().application.window_position = (800, 300)\nget_settings().application.window_fullscreen = False\nget_settings().application.window_statusbar = False\nget_settings().application.save_window_state = False\n\n\nviewer = napari.Viewer()\nviewer.theme = \"light\"\nviewer.dims.ndisplay = 3\nviewer.window.resize(800, 600)\nviewer.window.qt_viewer.dockLayerControls.toggleViewAction().trigger()\nviewer.window.qt_viewer.dockLayerList.toggleViewAction().trigger()\n\n\ndef make_screenshot(viewer):\n    img = viewer.screenshot(canvas_only=True, flash=False)\n    plt.imshow(img)\n    plt.axis(\"off\")\n\n\n# make data\nblobs = data.binary_blobs(length=301, volume_fraction=0.1, n_dim=3, seed=42)\nblobs = blobs[200:, 200:, :-100]\nblobs[:, :, :50] = 1"
+      },
       {
         "image_path": "gallery_assets/Image_Options_001_Header2.png",
         "celltype": "Header",

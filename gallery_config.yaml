@@ -1,6 +1,6 @@
 project_name: Napari
 repository_url: https://github.com/kolibril13/plywood-gallery-napari
-user_content_version: 0.4.15 (Napari)
+user_content_version: 0.4.17 (Napari)
 description: |
   Cheat sheet gallery for napari
 favicon: icon.png
